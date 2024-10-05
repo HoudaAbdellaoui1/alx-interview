@@ -5,8 +5,11 @@ pascal_triangle module
 This module provides functionality to generate Pascal's Triangle.
 
 Functions:
-    pascal_triangle(n): Generates a list of lists representing Pascal's Triangle with n rows.
+    pascal_triangle(n): Generates a list of lists representing
+    Pascal's Triangle with n rows.
 """
+
+
 def pascal_triangle(n):
     """
     Generate Pascal's Triangle up to n rows.
