@@ -1,4 +1,4 @@
- #!/usr/bin/python3
+#!/usr/bin/python3
 def pascal_triangle(n):
     # Return an empty list if n <= 0
     if n <= 0:
