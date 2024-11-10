@@ -1,54 +1,61 @@
 #!/usr/bin/python3
+"""N Queens placement on NxN chessboard"""
+
+
 import sys
 
 
-def print_usage_and_exit(message):
-    print(message)
-    sys.exit(1)
+def generate_solutions(row, column):
+    solution = [[]]
+    for queen in range(row):
+        solution = place_queen(queen, column, solution)
+    return solution
 
 
-def is_valid(board, row, col):
-    for i in range(row):
-        if board[i] == col or \
-           board[i] - i == col - row or \
-           board[i] + i == col + row:
-            return False
-    return True
+def place_queen(queen, column, prev_solution):
+    safe_position = []
+    for array in prev_solution:
+        for x in range(column):
+            if is_safe(queen, x, array):
+                safe_position.append(array + [x])
+    return safe_position
 
 
-def solve_nqueens(N):
-    def place_queen(row):
-        if row == N:
-            solution = [[i, board[i]] for i in range(N)]
-            solutions.append(solution)
-            return
-        for col in range(N):
-            if is_valid(board, row, col):
-                board[row] = col
-                place_queen(row + 1)
-
-    board = [-1] * N
-    solutions = []
-    place_queen(0)
-    return solutions
+def is_safe(q, x, array):
+    if x in array:
+        return (False)
+    else:
+        return all(abs(array[column] - x) != q - column
+                   for column in range(q))
 
 
-def main():
+def init():
     if len(sys.argv) != 2:
-        print_usage_and_exit("Usage: nqueens N\n")
-
-    try:
-        N = int(sys.argv[1])
-    except ValueError:
-        print_usage_and_exit("N must be a number")
-
-    if N < 4:
-        print_usage_and_exit("N must be at least 4")
-
-    solutions = solve_nqueens(N)
-    for solution in solutions:
-        print(solution)
+        print("Usage: nqueens N")
+        sys.exit(1)
+    if sys.argv[1].isdigit():
+        n = int(sys.argv[1])
+    else:
+        print("N must be a number")
+        sys.exit(1)
+    if n < 4:
+        print("N must be at least 4")
+        sys.exit(1)
+    return (n)
 
 
-if __name__ == "__main__":
-    main()
+def n_queens():
+
+    n = init()
+    # generate all solutions
+    solutions = generate_solutions(n, n)
+    # print solutions
+    for array in solutions:
+        clean = []
+        for q, x in enumerate(array):
+            clean.append([q, x])
+        print(clean)
+
+
+if __name__ == '__main__':
+    n_queens()
