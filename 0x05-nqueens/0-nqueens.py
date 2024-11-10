@@ -35,7 +35,7 @@ def solve_nqueens(N):
 
 def main():
     if len(sys.argv) != 2:
-        print_usage_and_exit("Usage: nqueens N")
+        print_usage_and_exit("Usage: nqueens N\n")
 
     try:
         N = int(sys.argv[1])
