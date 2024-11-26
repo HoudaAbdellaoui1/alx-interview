@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def makeChange(coins, total):
     # If total is 0 or negative, no coins are needed
     if total <= 0:
