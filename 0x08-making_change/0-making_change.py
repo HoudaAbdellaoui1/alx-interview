@@ -1,5 +1,18 @@
 #!/usr/bin/python3
+"""Calculate the minimum number of coins needed to make up a given total."""
 def makeChange(coins, total):
+    """
+    This function uses dynamic programming to find the minimum number of coins 
+    required to make a specific amount using a list of available coin denominations.
+
+    Parameters:
+    coins (list of int): A list of available coin denominations.
+    total (int): The target amount for which the change needs to be made.
+
+    Returns:
+    int: The minimum number of coins needed to make the total, or -1 if it is 
+         not possible to make the total with the available coins.
+    """
     # If total is 0 or negative, no coins are needed
     if total <= 0:
         return 0
